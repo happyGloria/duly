@@ -31,7 +31,7 @@ import Partitionmeasurement from '@/components/funpage/Partitionmeasurement'
 import pressurepoints from '@/components/funpage/pressurepoints'
 import waterselect from '@/components/funpage/waterselect'
 export default {
-  name: "HelloWorld",
+  name: "ToolPage",
   components:{
     Partitionmeasurement,
     pressurepoints,
