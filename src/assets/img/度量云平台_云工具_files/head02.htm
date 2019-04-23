@@ -1,0 +1,211 @@
+<!DOCTYPE >
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8" content="">
+    <title>智态供水智能云平台_数据预测</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="智态供水智能云平台,供水管网,WaterETMS,智态云,上海智态数据科技有限公司,事件预警平台,数据预测,数据清洗,趋势与噪声,水力模型,智能,压力监测点,分区计量,社区">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="http://112.64.170.158:8181/images/logo/logo.jpg">
+    
+    <!--  导航条引用  -->
+    <link rel="stylesheet" href="head02_data/common.css">
+    <script src="head02_data/json2.js" type="text/javascript"></script>
+    <script src="head02_data/jquery-1.js" type="text/javascript"></script>
+    <script src="head02_data/ServiceJS.js" type="text/javascript"></script>
+    <!--  导航条引用  -->
+    <script type="text/javascript">
+        window.onload = function () {
+            $("#view1").hide();
+            $("#view2").hide();
+            $("#view3").hide();
+            getCookie("ZTCloud_loginuserkey");
+        }
+
+//        function runFun() {
+//            var aa = Trim($("#Textarea").val(), "g");
+//            var bb = getStr(aa, "\"Forecast_day");
+//            var cc = getStr(bb, "\"History_window");
+//            var dd = getStr(cc, "\"Point_count_1_day");
+//            $.ajax({
+//                type: "POST",
+//                contentType: "application/json",
+//                url: "http://112.64.170.158:9101/data_forecast.asmx/Data_forecast",
+//                data: "{Json:'" + dd + "'}",
+//                dataType: 'json',
+//                success: function (result) {
+//                    $('#Textarea1').val(result.d);
+//                }
+//            });
+        //        }
+        function mkraa() {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval = getCookies("ZTCloud_loginuserkey");
+            if (cval != null)
+                document.cookie = "ZTCloud_loginuserkey" + "=" + cval + ";expires=" + exp.toGMTString();
+            top.location.href = "/";
+        }
+    </script>
+    <script type="text/javascript">
+//        $("nav-item a").click(function () {
+//            top.location.href = "http://localhost:6072/";  //showList是指定的iframe的name
+//        })
+    </script>
+</head>
+<body class="ai-platform" style="background: none; overflow: hidden;">
+    <!-- header-->
+    <div class="clear">
+    </div>
+    <div class="nav clearfix">
+        <div class="logo f-l">
+            <a href="http://112.64.170.158:8181/home.html" target="_parent">
+                <img src="head02_data/logo03_02.png" alt="" height="60px;">
+            </a>
+        </div>
+        <div class="nav-list f-l">
+            <div class="nav-item">
+                <a href="http://112.64.170.158:8181/home.html" target="_parent">首页</a></div>
+            <div class="nav-item nav-item-solution">
+                <a href="http://112.64.170.158:8181/service_home.html" target="_parent">云开发</a>
+                <div class="triangle-up" style="margin-left: 0px;display:none;">
+                    <img src="head02_data/triangle.png" alt="">
+                </div>
+                <div class="nav-sub-ol o-h" style=" display:none;">
+                    <div class="triangleup-list">
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">水量预测</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">监测数据清洗</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">趋势分析与噪声分析</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">相似性分析</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">爆管感知</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">流量计上下游分析</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">监测数据置信区间</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">供水路径</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">距离聚类</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">拓扑聚类</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/service_home.html" target="_parent">大用户水量异常判断</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item nav-item-solution">
+                <a href="javascript:void(0);" data-target="solution">云工具</a>
+                <div class="triangle-up02" style="margin-left: 0px;">
+                    <img src="head02_data/triangle_02.png" alt="">
+                </div>
+                <div class="nav-sub-ol o-h">
+                    <div class="triangleup-list">
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/tools.html" target="_parent">监测点优化布置</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/tools02.html" target="_parent">分区计量优化</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/tools031.html" target="_parent">水泵曲线校核工具</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/tools04.html" target="_parent">阀门特性校核工具</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/tools05.html" target="_parent">水表口径优选工具</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item nav-item-solution">
+                <a href="javascript:void(0);" data-target="solution">云应用</a>
+                <div class="triangle-up03" style="margin-left: 0px;">
+                    <img src="head02_data/triangle_02.png" alt="">
+                </div>
+                <div class="nav-sub-ol o-h">
+                    <div class="triangleup-list">
+                        
+                        <!--<div class="nav-sub-item">
+                            <a href="yunyingyong03.html" target="_parent">漏损控制云平台</a></div>-->
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/yunyingyong04.html" target="_parent">综合调度云平台</a></div>
+                       <!-- <div class="nav-sub-item">
+                            <a href="yunyingyong05.html" target="_parent">云计量平台</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunyingyong06.html" target="_parent">智慧管网云平台</a></div>-->
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/chanpin.html" target="_parent">WaterRTMS在线水力模型</a></div>
+                        <div class="nav-sub-item">
+                            <a href="http://112.64.170.158:8181/yunyingyong02.html" target="_parent">爆管感知预警云平台</a></div>
+                        <!--<div class="nav-sub-item">
+                            <a href="yunyingyong07.html" target="_parent">设备管理云平台</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunyingyong08.html" target="_parent">供水服务云平台</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunyingyong09.html" target="_parent">KPI绩效考核云平台</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunyingyong10.html" target="_parent">智慧排水云平台</a></div>-->
+                    </div>
+                </div>
+            </div>
+            <!--<div class="nav-item nav-item-solution">
+                <a href="javascript:void(0);" data-target="solution">云服务</a>
+                <div class="triangle-up04" style="margin-left: 0px;">
+                    <img src="images/service/triangle_02.png" alt="" />
+                </div>
+                <div class="nav-sub-ol o-h">
+                    <div class="triangleup-list">
+                        <div class="nav-sub-item">
+                            <a href="yunfuwu.html" target="_parent">监测设备远程运维云服务</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunfuwu02.html" target="_parent">水力模型维护云服务</a></div>
+                        <div class="nav-sub-item">
+                            <a href="yunfuwu03.html" target="_parent">咨询云服务</a></div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="nav-item">
+                <a href="http://water.dlmeasure.com/index.html" target="_parent">云学院</a></div>
+            <div class="nav-item">
+                <a href="http://112.64.170.158:8181/case.html" target="_parent">案例</a></div>
+
+            <div class="nav-item">
+                        <a href="http://112.64.170.158:8181/shequ.html" target="_parent">社区</a></div>
+            <div class="nav-item">
+                <a href="http://112.64.170.158:8181/about.html" target="_parent">关于</a></div>
+        </div>
+        <div class="nav-r-list f-r" id="view">
+            <div class="nav-item">
+                <div class="common-topbar-search">
+                    <i class="dbl-icon-base-Search" href="javascript:;" data-spm-click="gostr=/aliyun; locaid=topbar16search">
+                    </i>
+                    <input class="search-input" placeholder="云盾" name="k" autocomplete="OFF">
+                </div>
+            </div>
+            <div class="nav-item" id="view2" style="display: block;">
+                <a href="http://112.64.170.158:8181/" id="console" target="_top">登录</a>
+            </div>
+            <div class="nav-item" id="view3" style="display: block;">
+                <a href="http://112.64.170.158:8181/Home/Register" id="console" target="_top">注册</a>
+            </div>
+            <div class="nav-item" id="" style=" background:#349df0; height:32px; position:relative; top:14px; left:20px;   ">
+                <a href="" id="A1" target="_top" style=" position:relative; top:-14px; color:#fff;  ">控制台</a>
+            </div>
+            <div class="nav-item" width="60px" id="view1" style="left: 20px; display: none;">
+                <ul style="padding: 0; margin: 0;" id="ceshi2">
+                    <li id="li1"><a href="#" class="dropdown" target="_parent">
+                        <img src="head02_data/user_head.png" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                        <div id="C" style="position: absolute; width: 200px; top: 60px; right: 10px; border-radius: 2px;">
+                            <a href="http://112.64.170.158:8181/guanliyemian.html" target="_parent">我的主页</a> 
+                            <a onclick="mkraa()">安全退出</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>

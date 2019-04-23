@@ -1,0 +1,394 @@
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>度量云平台_云工具 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://112.64.170.158:8181/images/logo/logo.jpg">
+    <link href="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/index_129ec4d.css" rel="stylesheet">
+   
+    <link href="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/table_d131dbe.css" rel="stylesheet">
+    <link href="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/jquery-accordion-menu.css" rel="stylesheet">
+  
+    <!--  导航条引用  -->
+    <link rel="stylesheet" href="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/common.css">
+    <script src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/hm.js"></script><script src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/push.js"></script>
+    <script src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/hm.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?fdad4351b2e90e0f489d7fbfc47c8acf";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        function warningJump() {
+            if (obj != null) {
+                var name = obj.UserName;
+                var psd = obj.UserPwd;
+                var power = obj.Power;
+                if (power == 1) {
+                  window.open("http://112.64.170.158:8182/view/RegionalDivisionProject.html?UserName=" + name + "&UserPassWord=" + name);
+                }
+              else {
+                  document.getElementById("quanxian").style.display = "block"; //权限提示
+              }
+            } else {
+                document.getElementById("tankuang").style.display = "block";
+               
+            }
+        }
+
+        window.onload = function () {
+            getCookie("ZTCloud_loginuserkey");
+        }
+
+        var obj;
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) c_end = document.cookie.length;
+                    var str = unescape(document.cookie.substring(c_start, c_end));
+                    obj = JSON.parse([str]);
+                }
+            }
+            return ""
+        }
+    </script>
+    
+
+</head>
+<body class="ai-platform">
+
+<!--  弹框  -->
+
+          
+
+          <div id="tankuang" onclick="document.getElementById('tankuang').style.display = 'none'" style="background-color:rgba(9,23,38,0.2); width:100%;  height:100%; z-index:1000000; position:fixed; top:0px; display: none; ">
+            
+               
+               <div style=" background:#fff; width:600px; height:260px;margin:0 auto; position:relative; top:30%; "> 
+
+                  <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/tishi02.png" style=" max-width:100%; margin-left:20px; margin-top:20px;">
+               
+                  <div style="width:400px; height:40px; margin-left:70px;  position: absolute; top:20px; font-size:24px; color:#383a3c;  "> 
+        
+                    您还没登入
+                  
+                  </div>
+                  <p style="color:#383a3c; text-align:center; font-size:16px; letter-spacing:1; position:relative; top:40px;">您还没登入，请先登入...</p>
+                 
+                  
+                  <div style="  width:100%;  position: relative; top:60px; text-align:center; ">  
+        
+                    <div class="login_024a" style="    position: relative; top: 0px; display: inline-block; color:#b1b6bf;" aos="fade-up">
+                       <a href="http://112.64.170.158:8181/" target="_top" class="login_025">登入</a> &nbsp; 或  &nbsp; <a href="http://112.64.170.158:8181/Home/Register" target="_top" class="login_025">注册</a>
+                
+                    </div>
+        
+        
+                  </div>
+              
+               </div>
+            
+            
+            </div><div id="mark_mask" style="display:none;position:fixed;top:40px;left:0;z-index:99999999;height:1000px;width:100%;background:rgba(0,0,0,0.4);"></div>
+
+              
+
+   <!--  弹框  -->
+   <!--  权限  -->
+
+          
+
+          <div id="quanxian" onclick="document.getElementById('quanxian').style.display = 'none'" style="background-color:rgba(9,23,38,0.2); width:100%;  height:100%; z-index:1000000; position:fixed; top:0px; display: none; ">
+            
+               
+               <div style=" background:#fff; width:600px; height:260px;margin:0 auto; position:relative; top:30%; "> 
+
+                  <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/tishi02.png" style=" max-width:100%; margin-left:20px; margin-top:20px;">
+               
+                  <div style="width:400px; height:40px; margin-left:70px;  position: absolute; top:20px; font-size:24px; color:#383a3c;  "> 
+        
+                    权限限制
+                  
+                  </div>
+                  <p style="color:#383a3c; text-align:center; font-size:16px; letter-spacing:1; position:relative; top:40px;">抱歉，您还没有此权限，请联系管理员...</p>
+                 
+                  
+                  <div style="  width:100%;  position: relative; top:60px; text-align:center; ">  
+        
+                    <div class="login_024a" style="    position: relative; top: 0px; display: inline-block; color:#b1b6bf;" aos="fade-up">
+                       <a target="_top" class="login_025">确定</a> 
+                
+                    </div>
+        
+        
+                  </div>
+              
+               </div>
+            
+            
+            </div>
+
+              
+
+   <!--  权限  -->
+
+
+   <!-- header-->
+
+<div class="ai-platform">
+<div class="nav-w" style=" border-bottom:1px solid #e9ecf1;">
+
+    <iframe class="nav_yinyong" src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/head02.htm" frameborder="0"></iframe>
+
+    
+</div>
+
+</div>
+<!-- header-->		
+    <div id="noheader">
+    </div>
+    <div id="container">
+        <div id="left">
+            <!-- <div class="blank"></div> -->
+            <!--  左侧  -->
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu ">
+                <div class="jquery-accordion-menu-footer">
+                    智慧水务云工具
+                </div>
+                <ul id="demo-list">
+                    <li class=""><a href="http://112.64.170.158:8181/tools.html" class=""><span class="icon01"><img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/icon_tool_01.png"></span><span class="icon03"></span><span class="icon02">压力监测点优化布置</span> </a>
+                        
+                    </li>
+                    <li class="active"><a href="http://112.64.170.158:8181/tools02.html" class=""><span class="icon01"><img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/icon_tool_02.png"></span><span class="icon03"></span><span class="icon02">分区计量优化</span> </a>
+                        
+                    </li>
+                    <li class=""><a href="http://112.64.170.158:8181/tools031.html" class=""><span class="icon01"><img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/icon_tool_21.png"> </span><span class="icon03"></span><span class="icon02">水泵曲线校核</span> </a>
+                        
+                    </li>
+                     <li class=""><a href="http://112.64.170.158:8181/tools04.html" class=""><span class="icon01"><img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/icon_tool_22.png"> </span><span class="icon03"></span><span class="icon02">阀门特性校核</span> </a>
+                        
+                    </li>
+                     <li class=""><a href="http://112.64.170.158:8181/tools05.html" class=""><span class="icon01"><img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/icon_tool_23.png"> </span><span class="icon03"></span><span class="icon02">水表口径优选</span> </a>
+                        
+                    </li>
+                </ul>
+            </div>
+            <script type="text/javascript">
+                (function ($) {
+                    $.expr[":"].Contains = function (a, i, m) {
+                        return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+                    };
+                    function filterList(header, list) {
+                        //@header ͷ��Ԫ��
+                        //@list �����б�
+                        //����һ�����ر��
+                        var form = $("<form>").attr({
+                            "class": "filterform",
+                            action: "#"
+                        }), input = $("<input>").attr({
+                            "class": "filterinput",
+                            type: "text"
+                        });
+                        $(form).append(input).appendTo(header);
+                        $(input).change(function () {
+                            var filter = $(this).val();
+                            if (filter) {
+                                $matches = $(list).find("a:Contains(" + filter + ")").parent();
+                                $("li", list).not($matches).slideUp();
+                                $matches.slideDown();
+                            } else {
+                                $(list).find("li").slideDown();
+                            }
+                            return false;
+                        }).keyup(function () {
+                            $(this).change();
+                        });
+                    }
+                    $(function () {
+                        filterList($("#form"), $("#demo-list"));
+                    });
+                })(jQuery);	
+            </script>
+            <!--  左侧  -->
+        </div>
+        <div id="mid">
+            <div id="classContent">
+                <!--  数据测量  -->
+                <div style="height: 0px;">
+                </div>
+                <h2 id="b0">
+                    分区计量优化布置</h2>
+                <div class="class_item" id="b0b0">
+                    <div class="class_title">
+                        概述</div>
+                    <div class="class_desc">
+                        供水管网计量分区评估和优化布置工具能够充分利用水力模型来分析计量分区方案对管网运行压力、流量、水龄等参数的影响，以此来评估优选出最经济、施工便捷的实施方案。</div>
+
+                    <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/tools_02_02.htm" alt="" style="max-width: 100%; border:1px solid #d6d9dd;">
+                            
+                            
+                     </div>
+                </div>
+
+                
+                <div class="class_item" id="b0b2">
+                    <div class="class_title">
+                        浏览器兼容</div>
+                    <div class="class_desc">
+                        供水管网压力监测点优化布置工具兼容主流浏览器，如：Chrome浏览器（推荐）、IE8及以上版本、火狐浏览器、360浏览器、Opera浏览器、搜狗浏览器等。</div>
+                </div>
+                <!--  数据预测 -->
+                <!--数据预测代码调试区-->
+                <div class="class_item" id="b0b3">
+                    <div class="class_title">
+                        使用教程</div>
+                    <div class="tiaoshi_head">
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                            1、登入</div>
+                        <div class="class_desc">
+                            点击右上角【开始使用】若未登录，请先登入</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img1_1.png" alt="" style="max-width: 100%;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img1_2.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                图1 登入界面</p>
+                        </div>
+                        <div class="class_desc">
+                            如没有注册用户名，请先注册。</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img1_3.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                图2 注册界面</p>
+                        </div>
+                        <div class="class_desc">
+                            登录之后的界面，如下图：</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img3.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                图3 方案列表</p>
+                        </div>
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                            2、创建方案</div>
+                        <div class="class_desc">
+                            使用工具前，用户需要创建新方案，上传分析管网的INP文件和现有监测点位置信息EXCEL，并命名方案名称，选择分析日期，如图：</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img4.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                新建/删除方案</p>
+                        </div>
+                        
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img5.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            
+                            
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                方案创建</p>
+                        </div>
+                        
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img7.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                添加多个模型方案之后</p>
+                        </div>
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                            3、管网基础数据</div>
+                        <div class="class_desc">
+                            本产品可对上传的INP文件进行基础数据分析，将统计节点、管道和现有流量监测点个数结果列表在该模块展示（如下图）。</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_2.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                                管网基础数据</p>
+                        </div>
+
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                            4、现状评估</div>
+                        <div class="class_desc">
+                            
+该功能主要实现对现有监测点监测情况进行分析，可在管网地图中按是否能组成独立区域进行绘制。用户也可在管网地图上直接点选新增流量监测点进行定点分析，
+或删除监测点评估由此对可监控区域带来的影响等情况（如下图）。</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_3.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               管网现状评估</p>
+                        </div>
+
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_4.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               管网计量分区现状图</p>
+                        </div>
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                         5、计算方案列表</div>
+                        <div class="class_desc">
+                            
+新建分区计量方案在该模块中进行分析。用户在参数设置中设定欲分区的数量，允许的偏差百分比参数（偏差百分比为分区结果各区域拓扑规模和设定值得偏差），
+或保持根据该模型拓扑规模确定的默认值。运算后即可分别查看各区域评估结果，包括区域新增监测点等信息（如下图）。</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_5.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               流量监测点布置参数设置</p>
+                        </div>
+
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_6.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               计算方案列表</p>
+                        </div>
+
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_7.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               管网分区现状</p>
+                        </div>
+
+                        <div class="class_title" style="font-size: 16px; font-weight: bold; margin-top: 40px;">
+                         6、计算方案列表</div>
+                        <div class="class_desc">
+                            将展示新的计量分区结果。包括各区域的分布情况，区域节点、管道数量、新增监测点、现有监测点在管网中的位置等信息。各数据信息也可导出供用户分析或施工使用。用户可点击查看进行区域预览操作（如下图）。</div>
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_8.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               计算结果分析</p>
+                        </div>
+
+                        <div class="class_desc" style="width: 954px; height: auto; background: none; padding-left: 0px;">
+                            <img src="%E5%BA%A6%E9%87%8F%E4%BA%91%E5%B9%B3%E5%8F%B0_%E4%BA%91%E5%B7%A5%E5%85%B7_files/img_zone_9.png" alt="" style="max-width: 100%;border:1px solid #d6d9dd;">
+                            <p class="class_desc" style="margin-left: 20px; color: #b1b6bf;">
+                               计算方案1-分区1</p>
+                        </div>
+
+                        <div class="class_desc">
+                            实践证明计量分区评估与优化产品是分区计量管网漏失控制的有效途径，根据分区综合性的优化原则从水务企业根本需求出发，帮助企业真正做到节水增益，最终实现制水可持续发展。</div>
+
+
+                        
+                       
+                       
+                <!--数据预测代码调试区-->
+                <!--  数据预测 -->
+                <div style="width: 954px; height: 80px;">
+                </div>
+                <div style="width: 954px; height: 300px;">
+                </div>
+            </div>
+            <div class="bottom01">
+                <div class="kaishi01">
+                    <a onclick="warningJump()" class="kaishi">开始使用</a></div>
+            </div>
+            <!--  导航条引用  -->
+          
+            <!--  导航条引用  -->
+
+
+</div></div></div></div></body></html>
