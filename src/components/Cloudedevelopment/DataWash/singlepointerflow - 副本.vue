@@ -4,15 +4,14 @@
       <div class="contentoutbox">
         <div class="contentinbox">
           <!-- conten1 -->
-          <div class="contentoutbox_contentbox1">批量流量监测数据清洗</div>
+          <div class="contentoutbox_contentbox1">单点流量监测数据清洗</div>
           <!-- conten2 -->
           <div class="contentoutbox_contentbox2">
             <div class="contentoutbox_contentbox2_title">概述</div>
             <div class="contentoutbox_contentbox2_textbox">
               <div
                 class="contentoutbox_contentbox2_text"
-              >批量流量监测数据清洗是对一段时间的流量监测数据进行清洗，删除明显超出正常范围的数据，对短时间的缺失数据进行补充，如果长时间数据缺失，不对其进行补充。
-历史窗口流量监测数据清洗主要用于分区用水量计算、监测数据趋势分析等功能的前期数据处理。</div>
+              >单点流量监测数据清洗是根据流量监测点的历史数据，判断某一个时刻的流量值是否正常。如出现由于监测设备故障导致的数据缺失或数据明显超出正常范围等异常情况，则根据历史数据规律，对该时刻的数据进行预测，如果数据正常，则不进行处理。同时输出数据的状态：正常、缺失或异常。</div>
             </div>
             <div class="contentoutbox_contentbox2_img">
               <img
@@ -41,7 +40,7 @@
               </tr>
               <tr class="alt">
                 <td class="lefttd">输出数据状态：正常、缺失或异常</td>
-                <td>不输出数据状态</td>
+                <td>输出数据状态：正常、缺失或异常</td>
               </tr>
               <tr>
                 <td class="lefttd">数据缺失时，根据历史数据规律对其进行补充</td>
@@ -60,8 +59,8 @@
               <div class="contentoutbox_contentbox5_text">
                 网址
                 <a
-                  href="http://112.64.170.158:9100/api/Windowwashf/Window_wash_f"
-                >http://112.64.170.158:9100/api/Windowwashf/Window_wash_f</a>
+                  href="http://112.64.170.158:9100/api/Datawashf/Data_wash_f"
+                >http://112.64.170.158:9100/api/Datawashf/Data_wash_f</a>
               </div>
             </div>
           </div>
@@ -80,23 +79,25 @@
                   <td>History_window</td>
                   <td>输入历史窗口</td>
                   <td>N*1</td>
-                  <td>可以取任意长一段时间的历史数据</td>
+                  <td>建议取 3 天数据作为历史窗口， 数据步长越小越好。</td>
                 </tr>
                 <tr class="alt">
                   <td>Day_count</td>
                   <td>历史窗口数据天数</td>
                   <td>1*1</td>
                   <td>
-                   
+                    计算方法：
+                    (历史窗口时间 - 数据时间) / 时间步长
                   </td>
                 </tr>
                 <tr>
-                  <td>Tolerance</td>
+                  <td>Step_n</td>
                   <td>
-                  	容差
+                    要清洗的数据时间点距历史窗口
+                    最后一个数据的时间步长数
                   </td>
                   <td>1*1</td>
-                  <td>建议取值[100,500]</td>
+                  <td>控制输出数据的长度</td>
                 </tr>
                 <!-- <tr class="alt">
                 <td class="lefttd">Ernst Handel</td>
@@ -110,12 +111,11 @@
             <div class="contentoutbox_contentbox7_title">输入的json格式为：</div>
             <div class="contentoutbox_contentbox7_textbox">
               <textarea name id cols="100" rows="30" readonly>
-     {
-        "Day_count" : 3 , 
-        "History_window" :[  157 , 141 ...... ] ,
-        "tolerance":500
-     }
-			
+    {
+      "Day_count":3,
+      "History_window":[157,141,.......],
+      "Step_n":4 
+    }
 		
               </textarea>
             </div>
@@ -132,19 +132,20 @@
                   <th>备注</th>
                 </tr>
                 <tr>
-                  <td>History_window_out</td>
-                  <td>输出历史窗口</td>
-                  <td>	N*1</td>
+                  <td>Data_out</td>
+                  <td>预测值</td>
+                  <td>1*1</td>
                   <td>
-                    
+                    如果数据正常， 输出数据与输入数据相同；
+                    如果数据异常或缺失， 输出预测数据。
                   </td>
                 </tr>
-              <!--   <tr class="alt">
+                <tr class="alt">
                   <td>Err_code</td>
                   <td>异常编码</td>
                   <td>1*1</td>
                   <td>具体含义见下图</td>
-                </tr> -->
+                </tr>
                 <!--   <tr>
                   <td>Step_n</td>
                   <td>
@@ -160,19 +161,16 @@
                 </tr>-->
               </table>
             </div>
-           <!--  <div class="contentoutbox_contentbox8_img">
+            <div class="contentoutbox_contentbox8_img">
               <img src="../../../assets/img/backup02.jpg" style="width:100%" alt>
-            </div> -->
+            </div>
           </div>
           <!-- conten9 -->
           <div class="contentoutbox_contentbox9">
             <div class="contentoutbox_contentbox9_title">输出的json格式为</div>
             <div class="contentoutbox_contentbox9_textbox">
               <textarea name id cols="100" rows="30" readonly>
-  {
-      "History_window_out":[157,141,.......]
-}
-	
+  {"Data_out":224,"Err_code":0}
               </textarea>
             </div>
           </div>
@@ -181,21 +179,21 @@
             <div class="contentoutbox_contentbox10_title">在线测试</div>
             <div class="contentoutbox_contentbox10_title2">编辑您的代码：</div>
             <div class="contentoutbox_contentbox10_textbox">
-              <textarea name id cols="100" rows="30" v-model="messageallflow" placeholder></textarea>
+              <textarea name id cols="100" rows="30" v-model="message" placeholder></textarea>
             </div>
-            <div @click="Window_wash_f" class="contentoutbox_contentbox10_djyx">点击运行</div>
+            <div class="contentoutbox_contentbox10_djyx">点击运行</div>
           </div>
           <!-- conten11 -->
           <div class="contentoutbox_contentbox11">
             <div class="contentoutbox_contentbox11_title2">运行结果:</div>
             <div class="contentoutbox_contentbox11_textbox">
-              <textarea name id cols="100" rows="30" v-model="resmsgallflow" readonly></textarea>
+              <textarea name id cols="100" rows="30" readonly>
+  { TimeStamp : Flow }, { TimeStamp :  Flow }, { TimeStamp :  Flow }, ...... 
+              </textarea>
             </div>
           </div>
           <!-- conten12 echarts部分 -->
-          <div class="contentoutbox_contentbox12">
-            <allpointerflowecharts/>
-          </div>
+          <div class="contentoutbox_contentbox12"></div>
           <!-- content结束 -->
         </div>
       </div>
@@ -203,35 +201,30 @@
   </div>
 </template>
 <script>
-import defalftdata from "@/assets/js/defalftdata";
-import Urlclass from "@/http/Urlclass";
-import Bus from "@/bus.js";
-import allpointerflowecharts from "@/components/Cloudedevelopment/DataWash/echarts/allpointerflowecharts"
+import defalftdata from '@/assets/js/defalftdata'
+import Urlclass from '@/http/Urlclass'
 export default {
-  name: "allpointerflow",
-  components:{
-   allpointerflowecharts
-  },
+  name: "singlepointerflow",
   data() {
     return {
-      messageallflow: JSON.stringify(defalftdata.allpointerflowdata),
-      resmsgallflow: JSON.stringify(defalftdata.allpointerflowresdata),
-       messageallflow2: {...defalftdata.allpointerflowdata},
+      message:JSON.stringify(
+      defalftdata.singleflowdata
+      )
     };
   },
-  mounted() {},
-  methods: {
-    Window_wash_f() {
-      var params = this.messageallflow;
+  mounted(){
+    this.login()
+  },
+  methods:{
+     login() {
+      var params={"CodeId":"C022001000101501","PressureMeterName":"梅坳七路"}
       this.$axios
-        .post(Urlclass.UrlclassData_wash_f + "/Windowwashf/Window_wash_f", params)
+        .post(Urlclass.UrlclassLogin+"/GetControlPressure",JSON.stringify(params))
         .then(res => {
-          var that = this;
-          that.resmsgallflow =JSON.stringify(res.data);
-          var resdata=res.data
-          var params2=that.messageallflow2
-          var washdata={params2,resdata}
-          Bus.$emit("washdatafunallflow", washdata);
+          var that=this
+          that.msg=res
+           console.log("%cres返回的信息%c","font-size:36px;font-weight:blod;color:red","", res);
+          /* Bus.$emit("CurrentDatafun", CurrentData); */
         })
         .catch(err => {
           console.log("连接数据库失败！");
@@ -566,7 +559,7 @@ export default {
 .contentoutbox_contentbox8_table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   width: 100%;
-  height: 80px;
+  height: 160px;
   border-collapse: collapse;
   margin-bottom: 0px;
 }
@@ -611,7 +604,6 @@ export default {
   flex-wrap: nowrap;
   align-items: flex-start;
   width: 100%;
-  margin-top: 40px;
   /*  height: 220px; */
   /* background-color: aqua; */
 }
@@ -755,8 +747,8 @@ export default {
   flex-wrap: nowrap;
   align-items: flex-start;
   width: 100%;
-  height: 480px;
- /*  background-color: aqua; */
+  height: 460px;
+  background-color: aqua;
   margin-bottom: 600px;
   margin-top: 60px;
 }

@@ -6,6 +6,14 @@ import router from './router'
 import './assets/iconfont/iconfont.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import echarts from 'echarts'
+import qs from 'qs'
+import axios from './http/http'; //此处问http文件的路径
+
+Vue.prototype.$echarts = echarts
+Vue.prototype.$axios = axios //全局注册，使用方法为:this.$axios
+Vue.prototype.qs = qs //全局注册，使用方法为:this.qs
+
 import vuescroll from 'vuescroll';
 
 // 你可以在这里设置全局配置

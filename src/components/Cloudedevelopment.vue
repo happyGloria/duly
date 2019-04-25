@@ -82,7 +82,8 @@
         </vue-scroll>
       </div>
     </div>
-    <div class="right_outbox">
+   <keep-alive>
+        <div class="right_outbox">
       <!-- /* 清洗部分 */ -->
       <singlepointerflow v-show="nowIndex==='0-0'"/>
       <singlepressure v-show="nowIndex==='0-1'"/>
@@ -106,6 +107,7 @@
       <gwtpjl v-show="nowIndex==='3-3'"/>
       <gwjljl v-show="nowIndex==='3-4'"/>
     </div>
+   </keep-alive>
   </div>
 </template>
 
@@ -206,8 +208,10 @@ export default {
       /*   console.log(key, keyPath); */
     },
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+     /*  console.log(key, keyPath); */
       this.nowIndex = key;
+     /*  localStorage.setItem('mynowIndex', key);
+      localStorage.getItem('mynowIndex'); */
     }
   }
 };
@@ -270,6 +274,7 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   width: 18.75vw;
+/*   min-width:295px; */
   height: 100vh;
   border-right: 1px solid #e9ecf1;
   /* background-color: rgb(140, 0, 255) */
