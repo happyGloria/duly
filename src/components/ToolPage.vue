@@ -17,6 +17,8 @@
           {{item}}</div>
         </div>
       </div>
+      <!-- 跳转路由 -->
+      <div class="left_outbox_add" @click="routeradd">跳转路由</div>
     </div>
     <div class="right_outbox">
        <Partitionmeasurement v-show="nowIndex===0"/>
@@ -55,6 +57,10 @@ export default {
     toggleTabs(index) {
       this.nowIndex = index;
       this.name = this.tabsParam[index];
+    },
+    /* 添加路由跳转 */
+    routeradd(){
+      this.$router.push("/Cloudedevelopment")
     }
   }
 };
@@ -89,6 +95,17 @@ export default {
   border-right: 1px solid #e9ecf1;
   /* background-color: rgb(140, 0, 255) */
 }
+/* 添加路由跳转 */
+.left_outbox_add{
+  width: 18.75vw;
+  height: 60px;
+  color: #383a3c;
+    text-align: center;
+  font: normal 18px/40px "微软雅黑";
+  cursor:pointer;
+  background-color: rgb(255, 145, 0)
+}
+
 .left_outbox_topoutbox {
   width: 18.75vw;
   height: 100px;
